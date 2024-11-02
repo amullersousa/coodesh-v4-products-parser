@@ -1,5 +1,4 @@
 import { Result, Guard, AggregateRoot, UniqueEntityID } from '@/core'
-import { ProductCreated } from '@/domain/events'
 import { ProductID } from './ProductID'
 import {
   ProductImageURL,
@@ -57,11 +56,6 @@ export class Product extends AggregateRoot<ProductProps> {
     }
 
     const product = new Product(props, id)
-    const newProduct = !id
-
-    if (newProduct) {
-      product.addDomainEvent(new ProductCreated(product))
-    }
 
     return Result.ok<Product>(product)
   }
