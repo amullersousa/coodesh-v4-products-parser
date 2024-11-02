@@ -5,6 +5,7 @@ import {
   HttpRequest,
   HttpResponse
 } from '@/infra/providers/http/HttpCommunication'
+import { ObjectUtils } from '@/utils'
 
 export class AxiosHttpCommunication implements HttpCommunication {
   private settings: HttpCommunicationSettings
@@ -14,13 +15,11 @@ export class AxiosHttpCommunication implements HttpCommunication {
   }
 
   async post<Body, Data = any, Params = any>(
-    request: HttpRequest<Body, Params>
+    request: HttpRequest<Body, Params>,
+    settings?: HttpCommunicationSettings
   ): Promise<HttpResponse<Data>> {
     try {
-      const axiosInstance = axios.create({
-        baseURL: this.settings.host,
-        headers: this.settings.headers
-      })
+      const axiosInstance = axios.create(ObjectUtils.merge(this.settings, settings))
 
       return await axiosInstance.post(request.path, request.body, {
         params: request.params
@@ -38,13 +37,11 @@ export class AxiosHttpCommunication implements HttpCommunication {
   }
 
   async get<Body, Data = any, Params = any>(
-    request: HttpRequest<Body, Params>
+    request: HttpRequest<Body, Params>,
+    settings?: HttpCommunicationSettings
   ): Promise<HttpResponse<Data>> {
     try {
-      const axiosInstance = axios.create({
-        baseURL: this.settings.host,
-        headers: this.settings.headers
-      })
+      const axiosInstance = axios.create(ObjectUtils.merge(this.settings, settings))
 
       return await axiosInstance.get(request.path, {
         params: request.params
