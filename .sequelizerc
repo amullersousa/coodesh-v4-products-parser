@@ -1,15 +1,7 @@
 var path = require('path')
 
 module.exports = {
-  config: path.resolve(
-    'build',
-    'infra',
-    'providers',
-    'database',
-    'sequelize',
-    'config',
-    'database.js'
-  ),
+  config: path.resolve('build', 'config', 'database.js'),
   'models-path': path.resolve(
     'build',
     'infra',
