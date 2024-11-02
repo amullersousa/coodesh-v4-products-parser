@@ -1,5 +1,5 @@
 import { RouteBuilder } from '@/core/RouteBuilder'
-import { Router } from 'express'
+import { Request, Response, Router } from 'express'
 import config from '@/config'
 import {
   deleteProductController,
@@ -9,6 +9,7 @@ import {
   updateProductController
 } from '@/infra/http/controllers'
 import { authorizationMiddleware } from '@/infra/http/middlewares'
+import { importProductService } from '@/application/services/ImportProduct'
 
 export class Routes extends RouteBuilder {
   constructor() {
@@ -17,6 +18,13 @@ export class Routes extends RouteBuilder {
 
   protected routes(): Router {
     const router: Router = Router()
+
+    // @TODO para testar o serviço de importação
+    router.get('/import-test', async (request: Request, response: Response) => {
+      console.log('running')
+      await importProductService.execute()
+      return response.send()
+    })
 
     router.get('/', authorizationMiddleware.ensureApiKey(), getAppInfoController.execute)
 
