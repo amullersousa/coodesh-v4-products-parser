@@ -2,106 +2,124 @@ export default (sequelize, DataTypes) => {
   const Product = sequelize.define(
     'Product',
     {
-      code: {
-        type: DataTypes.NUMBER,
+      id: {
+        type: DataTypes.UUID,
         allowNull: false,
         primaryKey: true
       },
+      code: {
+        type: DataTypes.BIGINT,
+        allowNull: false,
+        unique: true
+      },
       status: {
         type: DataTypes.ENUM('draft', 'trash', 'published'),
-        allowNull: false
+        allowNull: false,
+        defaultValue: 'draft'
       },
       imported_t: {
-        type: DataTypes.TIMESTAMP,
-        allowNull: false
+        type: DataTypes.DATE,
+        allowNull: true
       },
       url: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       creator: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       created_t: {
-        type: DataTypes.TIMESTAMP,
-        allowNull: false
+        type: DataTypes.DATE,
+        allowNull: true
       },
       last_modified_t: {
-        type: DataTypes.TIMESTAMP,
-        allowNull: false
+        type: DataTypes.DATE,
+        allowNull: true
       },
       product_name: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       quantity: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       brands: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       categories: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       labels: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       cities: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       purchase_places: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       stores: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       ingredients_text: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       traces: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       serving_size: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       serving_quantity: {
-        type: DataTypes.NUMBER,
-        allowNull: false
+        type: DataTypes.FLOAT,
+        allowNull: true
       },
       nutriscore_score: {
-        type: DataTypes.NUMBER,
-        allowNull: false
+        type: DataTypes.BIGINT,
+        allowNull: true
       },
       nutriscore_grade: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       main_category: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       },
       image_url: {
         type: DataTypes.TEXT,
-        allowNull: false
+        allowNull: true
       }
     },
     {
-      timestamps: true,
+      timestamps: false,
       underscored: true,
-      tableName: 'products'
+      tableName: 'products',
+      indexes: [{ unique: true, fields: ['code'] }]
     }
   )
+
+  Product.beforeValidate(instance => {
+    for (const key in instance.dataValues) {
+      if (
+        typeof instance.dataValues[key] === 'string' &&
+        instance.dataValues[key] === ''
+      ) {
+        instance.dataValues[key] = null
+      }
+    }
+  })
 
   return Product
 }

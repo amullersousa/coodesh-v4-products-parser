@@ -4,98 +4,104 @@ export default {
   async up(queryInterface, Sequelize) {
     const createProducts = () => {
       return queryInterface.createTable('products', {
-        code: {
-          type: Sequelize.NUMBER,
+        id: {
+          type: Sequelize.UUID,
           allowNull: false,
           primaryKey: true
         },
+        code: {
+          type: Sequelize.BIGINT,
+          allowNull: false,
+          unique: true
+        },
         status: {
           type: Sequelize.ENUM('draft', 'trash', 'published'),
-          allowNull: false
+          allowNull: false,
+          defaultValue: 'draft'
         },
         imported_t: {
-          type: Sequelize.TIMESTAMP,
-          allowNull: false
+          type: Sequelize.DATE,
+          allowNull: true
         },
         url: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         creator: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         created_t: {
-          type: Sequelize.TIMESTAMP,
-          allowNull: false
+          type: Sequelize.DATE,
+          allowNull: true
         },
         last_modified_t: {
-          type: Sequelize.TIMESTAMP,
-          allowNull: false
+          type: Sequelize.DATE,
+          allowNull: true
         },
         product_name: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         quantity: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         brands: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         categories: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         labels: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         cities: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         purchase_places: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         stores: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         ingredients_text: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         traces: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         serving_size: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         serving_quantity: {
-          type: Sequelize.NUMBER,
-          allowNull: false
+          type: Sequelize.FLOAT,
+          allowNull: true
         },
         nutriscore_score: {
-          type: Sequelize.NUMBER,
-          allowNull: false
+          type: Sequelize.BIGINT,
+          allowNull: true
         },
         nutriscore_grade: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         main_category: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         },
         image_url: {
           type: Sequelize.TEXT,
-          allowNull: false
+          allowNull: true
         }
       })
     }
@@ -117,7 +123,7 @@ export default {
           allowNull: false
         },
         imported_t: {
-          type: Sequelize.TIMESTAMP,
+          type: Sequelize.DATE,
           allowNull: false
         },
         status: {
