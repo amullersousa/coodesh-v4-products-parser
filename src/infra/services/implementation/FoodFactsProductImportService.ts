@@ -7,7 +7,6 @@ import { Result } from '@/core'
 import { HttpCommunication } from '@/infra/providers/http/HttpCommunication'
 import { getLogger } from '@/infra/providers/logger'
 import { ProductImportService } from '@/infra/services/ProductImportService'
-import { Products } from '@/domain/entities'
 import { ProductPayload } from '@/application/payloads'
 
 export class FoodFactsProductImportService implements ProductImportService {
