@@ -78,7 +78,7 @@ Para executar o projeto @fitness-foods/server, siga as instruções abaixo:
 ### Pré-requisitos
 
 - Node.js: Certifique-se de que o Node.js (versão 16 ou superior) esteja instalado.
-- Banco de Dados PostgreSQL: Configure um banco de dados PostgreSQL e anote as credenciais.
+- Banco de Dados PostgreSQL: Configure um banco de dados PostgreSQL e anote as credenciais (banco de dados gratuito: https://supabase.com).
 - Variáveis de Ambiente: Crie um arquivo .env na raiz do projeto (use como refêrencia o arquivo example.env) com as variáveis necessárias, como as configurações de banco de dados e quaisquer outras variáveis sensíveis.
 
 ### Passo a Passo
@@ -93,3 +93,20 @@ Para executar o projeto @fitness-foods/server, siga as instruções abaixo:
 - Limpeza do Banco de Dados:
   - npm run db:migrate:undo:dev
   - npm run db:seed:undo
+
+As rotas podem ser testadas pela url: localhost:3000/v1/<path>
+
+# Nota de esclarecimento Desafio
+
+Por conta de alguns imprevistos tive apenas dois dias para realizar esse desafio e por isso algumas coisas ficaram pendentes.
+
+O que falta finalizar:
+
+- Sistema do CRON para iniciar processo de importação automaticamente (atualmente só é possível iniciar através da rota /v1/import-test)
+- Criar serviços para salvar o histórico de importações
+- Finalizar get Detalhes da API
+- Desenvolver Testes Unitários
+- Finalizar esquema de segurança utilizando API KEY
+- Finaliazar Readme do Repositório
+- Configurar um sistema de alerta se tem algum falho durante o Sync dos produtos
+- Descrever a documentação da API utilizando o conceito de Open API 3.0

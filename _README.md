@@ -27,8 +27,8 @@ OK - Recomendável usar Drivers oficiais para integração com o DB
 
 Para a definição do modelo, consultar o arquivo [products.json](./products.json) que foi exportado do Open Food Facts, um detalhe importante é que temos dois campos personalizados para poder fazer o controle interno do sistema e que deverão ser aplicados em todos os alimentos no momento da importação, os campos são:
 
-- `imported_t`: campo do tipo Date com a dia e hora que foi importado;
-- `status`: campo do tipo Enum com os possíveis valores draft, trash e published;
+OK - `imported_t`: campo do tipo Date com a dia e hora que foi importado;
+OK - `status`: campo do tipo Enum com os possíveis valores draft, trash e published;
 
 ### Sistema do CRON
 
@@ -64,10 +64,12 @@ OK - `GET /products`: Listar todos os produtos da base de dados, adicionar siste
 
 OK - **Diferencial 2** Configurar Docker no Projeto para facilitar o Deploy da equipe de DevOps;
 
-- **Diferencial 3** Configurar um sistema de alerta se tem algum falho durante o Sync dos produtos;
+[INICIADO] - **Diferencial 3** Configurar um sistema de alerta se tem algum falho durante o Sync dos produtos;
+
 - **Diferencial 4** Descrever a documentação da API utilizando o conceito de Open API 3.0;
 - **Diferencial 5** Escrever Unit Tests para os endpoints GET e PUT do CRUD;
-- **Diferencial 6** Escrever um esquema de segurança utilizando `API KEY` nos endpoints. Ref: https://learning.postman.com/docs/sending-requests/authorization/#api-key
+
+[INICIADO] - **Diferencial 6** Escrever um esquema de segurança utilizando `API KEY` nos endpoints. Ref: https://learning.postman.com/docs/sending-requests/authorization/#api-key
 
 ## Readme do Repositório
 
