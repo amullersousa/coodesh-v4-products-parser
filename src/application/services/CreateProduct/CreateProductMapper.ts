@@ -16,7 +16,7 @@ export namespace CreateProductMapper {
       const createProductCode = ProductCode.create(payload.code)
       const createCreatedAt = ProductDate.create(payload.created_t)
       const createLastModifiedAt = ProductDate.create(payload.last_modified_t)
-      const createImportedAt = ProductDate.create()
+      const createImportedAt = ProductDate.create(new Date())
 
       const combine = Result.combine([
         createProductURL,

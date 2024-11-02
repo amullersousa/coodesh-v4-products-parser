@@ -1,12 +1,14 @@
-import { saveProductService } from '@/application/services/SaveProduct'
 import { productImportService } from '@/infra/services'
 import { checkProductExistsService } from '@/application/services/CheckProductExists'
+import { createProductService } from '@/application/services/CreateProduct'
+import { updateProductService } from '@/application/services/UpdateProduct'
 import { ImportProductService } from './ImportProductService'
 
 const importProductService = new ImportProductService(
   productImportService,
   checkProductExistsService,
-  saveProductService
+  createProductService,
+  updateProductService
 )
 
 export { importProductService }

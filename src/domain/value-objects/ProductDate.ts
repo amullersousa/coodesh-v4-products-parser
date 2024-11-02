@@ -18,12 +18,8 @@ export class ProductDate extends ValueObject<ProductDateProps> {
 
     let value
 
-    if (date) {
-      if (typeof date === 'number') {
-        value = this.format(date)
-      }
-    } else {
-      value = new Date()
+    if (date && typeof date === 'number') {
+      value = this.format(date)
     }
 
     return Result.ok<ProductDate>(
