@@ -13,12 +13,7 @@ export class ValidatorUtils {
     }
   }
 
-  public static validateZipCode(zipCode: string): boolean {
-    const sanitizedZipCode = zipCode.replace(/\D/g, '')
-
-    return (
-      validator.isLength(sanitizedZipCode, { min: 8, max: 8 }) &&
-      validator.isNumeric(sanitizedZipCode)
-    )
+  public static validateURL(url: string): boolean {
+    return validator.isURL(url)
   }
 }

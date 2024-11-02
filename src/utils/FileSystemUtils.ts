@@ -14,4 +14,26 @@ export class FileSystemUtils {
       })
     })
   }
+
+  public static write(file: Buffer, outputPath: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      try {
+        fs.writeFileSync(outputPath, file)
+        return resolve(null)
+      } catch (error) {
+        return reject(error)
+      }
+    })
+  }
+
+  public static stream(filePath: string): Promise<fs.ReadStream> {
+    return new Promise((resolve, reject) => {
+      try {
+        const stream = fs.createReadStream(filePath, { encoding: 'utf8' })
+        return resolve(stream)
+      } catch (error) {
+        return reject(error)
+      }
+    })
+  }
 }
